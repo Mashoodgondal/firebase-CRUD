@@ -1,3 +1,4 @@
+import GetData from "./getdata/page";
 import HomePage from "./home/page";
 
 export default function Home() {
@@ -5,6 +6,7 @@ export default function Home() {
     <div>
       <h2>ali</h2>
       <HomePage />
+      <GetData />
     </div>
   );
 }
