@@ -24,21 +24,6 @@ const HomePage = () => {
     }
   };
   return (
-    // <div>
-    //   <input
-    //     placeholder="Enter name"
-    //     onChange={(e) => setUserName(e.target.value)}
-    //   ></input>
-    //   <input
-    //     placeholder="Enter email"
-    //     onChange={(e) => setEmail(e.target.value)}
-    //   ></input>
-    //   <input
-    //     placeholder="Enter course"
-    //     onChange={(e) => setCourse(e.target.value)}
-    //   ></input>
-    //   <button onClick={submitHandeler}>submit</button>
-    // </div>
     <div className="container mx-auto my-8 max-w-md">
       <div className="space-y-4">
         <input

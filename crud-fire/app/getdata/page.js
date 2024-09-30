@@ -23,25 +23,6 @@ const GetData = () => {
     fetchData();
   }, []);
   return (
-    // <div>
-    //   <h1>List of Students</h1>
-    //   <table>
-    //     <tr>
-    //       <td>Name</td>
-    //       <td>Email</td>
-    //       <td>Courses</td>
-    //     </tr>
-    //     {students?.map((student) => {
-    //       return (
-    //         <tr>
-    //           <td>{student.userName}</td>
-    //           <td>{student.email}</td>
-    //           <td>{student.course}</td>
-    //         </tr>
-    //       );
-    //     })}
-    //   </table>
-    // </div>
     <div className="container mx-auto my-8">
       <h1 className="text-2xl font-bold mb-6 text-center">List of Students</h1>
       <table className="min-w-full bg-white border border-gray-300 shadow-md">
