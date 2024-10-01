@@ -6,12 +6,15 @@ import {
   doc,
   getDocs,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 const GetData = () => {
   const [students, setstudents] = useState([]);
+  const [loader, setloader] = useState(false);
+  const [id, setid] = useState();
   const fetchData = async () => {
     try {
       const collectionName = collection(db, "abs");
@@ -27,18 +30,34 @@ const GetData = () => {
       console.log("error", error);
     }
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const deleteHandeler = async (id) => {
     const docRef = doc(db, "abs", id);
-    await deleteDoc(docRef);
-    // fetchData();
-    // another way
-    const newStudent = students.filter((student) => id == !student.id);
-    setstudents(newStudent);
+    try {
+      setid(id);
+      setloader(true);
+      await deleteDoc(docRef);
+      setloader(false);
+      // fetchData();
+      // another way
+      const newStudent = students.filter((student) => id !== student.id);
+      setstudents(newStudent);
+    } catch (error) {
+      console.log("error", error);
+    }
   };
+  const updatHandeler = async (id) => {
+    try {
+      const docRef = doc(db, "abs", id);
+      await updateDoc(docRef, { email: "imran" });
+      fetchData();
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="container mx-auto my-8">
@@ -83,11 +102,13 @@ const GetData = () => {
               </td>
               <td>
                 <button onClick={() => deleteHandeler(student.id)}>
-                  delete
+                  {student.id == id && loader ? "loading..." : "delete"}
                 </button>
               </td>
               <td>
-                <button>update</button>
+                <button onClick={() => updatHandeler(student.id)}>
+                  update
+                </button>
               </td>
             </tr>
           ))}
