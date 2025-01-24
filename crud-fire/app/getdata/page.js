@@ -15,21 +15,37 @@ const GetData = () => {
   const [students, setstudents] = useState([]);
   const [loader, setloader] = useState(false);
   const [id, setid] = useState();
+  // const fetchData = async () => {
+  //   try {
+  //     const collectionName = collection(db, "abs");
+  //     // const Q = query(collectionName, where("userName", "==", "ahmad"));
+  //     const docs = await getDocs(collectionName);
+  //     const studentData = [];
+  //     docs.forEach((doc) => {
+  //       studentData.push({ id: doc.id, ...doc.data() });
+  //     });
+  //     setstudents(studentData);
+  //     console.log("students", studentData);
+  //   } catch (error) {
+  //     console.log("error", error);
+  //   }
+  // };
   const fetchData = async () => {
     try {
       const collectionName = collection(db, "abs");
-      // const Q = query(collectionName, where("userName", "==", "ahmad"));
       const docs = await getDocs(collectionName);
       const studentData = [];
       docs.forEach((doc) => {
+        console.log("Document Data:", doc.data()); // Debug: log each document
         studentData.push({ id: doc.id, ...doc.data() });
       });
+      console.log("Fetched Students:", studentData); // Debug: log all data
       setstudents(studentData);
-      console.log("students", studentData);
     } catch (error) {
-      console.log("error", error);
+      console.log("Error fetching data:", error); // Log any errors
     }
   };
+  
 
   const deleteHandeler = async (id) => {
     const docRef = doc(db, "abs", id);
